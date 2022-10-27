@@ -62,7 +62,7 @@ export const TIFFViewer = ({ tiff, ...rest }) => {
   return (
     <div className={styles.container} id='tiff-container' {...rest}>
       <div id='tiff-inner-container' />
-      {pages.length > 0 && (
+      {pages.length > 1 && (
         <div id='footer'>
           <button
             disabled={page === 0}

@@ -21,7 +21,7 @@ import 'react-tiff/dist/index.css'
 import tiffFile from './multipage.tiff'
 
 const App = () => {
-  return <TIFFViewer tiff={tiffFile} isBorder isMargin />
+  return <TIFFViewer tiff={tiffFile} />
 }
 
 export default App

@@ -8,21 +8,23 @@
 
 ```bash
 npm install --save react-tiff-viewer
+yarn add react-tiff-viewer
 ```
 
 ## Usage
 
 ```jsx
-import React, { Component } from 'react'
+import React from 'react'
 
-import MyComponent from 'react-tiff-viewer'
+import { TIFFViewer } from 'react-tiff-viewer'
 import 'react-tiff-viewer/dist/index.css'
+import tiffFile from './multipage.tiff'
 
-class Example extends Component {
-  render() {
-    return <MyComponent />
-  }
+const App = () => {
+  return <TIFFViewer tiff={tiffFile} isBorder isMargin />
 }
+
+export default App
 ```
 
 ## License

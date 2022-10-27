@@ -1,10 +1,11 @@
 import React from 'react'
 
-import { ExampleComponent } from 'react-tiff-viewer'
+import { TIFFViewer } from 'react-tiff-viewer'
 import 'react-tiff-viewer/dist/index.css'
+import tiffFile from './multipage.tiff'
 
 const App = () => {
-  return <ExampleComponent text="Create React Library Example 😄" />
+  return <TIFFViewer tiff={tiffFile} isBorder isMargin />
 }
 
 export default App

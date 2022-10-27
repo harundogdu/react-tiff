@@ -3,10 +3,7 @@ import styles from './styles.module.css'
 import UTIF from 'utif'
 import axios from 'axios'
 
-export const TIFFViewer = ({
-  tiff,
-  ...rest
-}) => {
+export const TIFFViewer = ({ tiff, ...rest }) => {
   const [_tiff] = React.useState(tiff)
   const [, setTiffs] = React.useState([])
   const [pages, setPages] = React.useState([])
@@ -63,23 +60,25 @@ export const TIFFViewer = ({
   }, [page, pages])
 
   return (
-    <div
-      className={styles.container}
-      id='tiff-container'
-      {...rest}
-    >
+    <div className={styles.container} id='tiff-container' {...rest}>
       <div id='tiff-inner-container' />
-      {page > 0 && (
+      {pages.length > 0 && (
         <div id='footer'>
           <button
-            disabled={page === 0} onClick={handlePreviousClick} className={styles.button}>
+            disabled={page === 0}
+            onClick={handlePreviousClick}
+            className={styles.button}
+          >
             Previous
           </button>
           <span className={styles.span}>
             Page {page + 1} of {pages.length}
           </span>
-          <button disabled={page === pages.length - 1}
-            onClick={handleNextClick} className={styles.button}>
+          <button
+            disabled={page === pages.length - 1}
+            onClick={handleNextClick}
+            className={styles.button}
+          >
             Next
           </button>
         </div>

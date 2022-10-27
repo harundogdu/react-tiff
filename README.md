@@ -1,4 +1,4 @@
-# react-tiff-viewer
+# react-tiff
 
 > Made with create-react-library
 
@@ -7,8 +7,8 @@
 ## Install
 
 ```bash
-npm install --save react-tiff-viewer
-yarn add react-tiff-viewer
+npm install --save react-tiff
+yarn add react-tiff
 ```
 
 ## Usage
@@ -16,8 +16,8 @@ yarn add react-tiff-viewer
 ```jsx
 import React from 'react'
 
-import { TIFFViewer } from 'react-tiff-viewer'
-import 'react-tiff-viewer/dist/index.css'
+import { TIFFViewer } from 'react-tiff'
+import 'react-tiff/dist/index.css'
 import tiffFile from './multipage.tiff'
 
 const App = () => {

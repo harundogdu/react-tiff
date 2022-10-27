@@ -5,19 +5,12 @@ import axios from 'axios'
 
 export const TIFFViewer = ({
   tiff,
-  isBorder = false,
-  isMargin = false,
   ...rest
 }) => {
   const [_tiff] = React.useState(tiff)
   const [, setTiffs] = React.useState([])
   const [pages, setPages] = React.useState([])
   const [page, setPage] = React.useState(0)
-
-  const style = {
-    border: isBorder ? '1px solid #ccc' : 'none',
-    margin: isMargin ? '1rem' : '0px'
-  }
 
   function imgLoaded(e) {
     var ifds = UTIF.decode(e.target.response)
@@ -73,21 +66,24 @@ export const TIFFViewer = ({
     <div
       className={styles.container}
       id='tiff-container'
-      style={style}
       {...rest}
     >
       <div id='tiff-inner-container' />
-      <div id='footer'>
-        <button onClick={handlePreviousClick} className={styles.button}>
-          Previous
-        </button>
-        <span className={styles.span}>
-          Page {page + 1} of {pages.length}
-        </span>
-        <button onClick={handleNextClick} className={styles.button}>
-          Next
-        </button>
-      </div>
+      {page > 0 && (
+        <div id='footer'>
+          <button
+            disabled={page === 0} onClick={handlePreviousClick} className={styles.button}>
+            Previous
+          </button>
+          <span className={styles.span}>
+            Page {page + 1} of {pages.length}
+          </span>
+          <button disabled={page === pages.length - 1}
+            onClick={handleNextClick} className={styles.button}>
+            Next
+          </button>
+        </div>
+      )}
     </div>
   )
 }

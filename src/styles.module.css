@@ -98,3 +98,25 @@ button:not(:disabled):hover {
   background-color: #000;
   opacity: .8 !important;
 }
+
+.btnPrint {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  z-index: 99;
+  border: none;
+  color: #141414;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 5px 12px;
+  transition: all cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.btnPrint:hover {
+  color: #fff;
+}
+
+.btnPrint svg {
+  width: 20px;
+  height: 20px;
+}

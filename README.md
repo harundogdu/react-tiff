@@ -11,6 +11,10 @@ npm install --save react-tiff
 yarn add react-tiff
 ```
 
+## Quick Demo
+
+[Demo](https://codesandbox.io/s/react-tiff-95u65f)
+
 ## Usage
 
 ```jsx

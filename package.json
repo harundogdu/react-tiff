@@ -1,7 +1,14 @@
 {
   "name": "react-tiff",
   "version": "0.0.4",
-  "description": "Made with create-react-library",
+  "keywords": [
+    "tiff",
+    "react-tiff",
+    "react-tiff-viewer",
+    "react-tiff-viewer-component",
+    "react-tiff-viewer-component-library"
+  ],
+  "description": "A React component for viewing TIFF images.",
   "author": "harundogdu",
   "license": "MIT",
   "repository": "harundogdu/react-tiff",

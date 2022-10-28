@@ -1,7 +1,5 @@
 # react-tiff
 
-## Description
-
 A React component for viewing TIFF images.
 
 ## Features

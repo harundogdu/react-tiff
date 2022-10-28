@@ -29,7 +29,7 @@ yarn add react-tiff
 import React from 'react'
 
 import { TIFFViewer } from 'react-tiff'
-import 'react-tiff-viewer/dist/index.css'
+import 'react-tiff/dist/index.css'
 import tiffFile from './images/multipage.tiff'
 
 const App = () => {

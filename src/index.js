@@ -2,8 +2,61 @@ import React, { useEffect } from 'react'
 import styles from './styles.module.css'
 import UTIF from 'utif'
 import axios from 'axios'
+import i18n from 'i18next'
+import { useTranslation, initReactI18next } from 'react-i18next'
+import PropTypes from 'prop-types'
 
-export const TIFFViewer = ({ tiff, ...rest }) => {
+export const TIFFViewer = ({ tiff, lang = 'en', ...rest }) => {
+  // i18 localization
+  i18n.use(initReactI18next).init({
+    resources: {
+      en: {
+        translation: {
+          Next: 'Next',
+          Previous: 'Previous',
+          'Page {page} of {total}': 'Page {page} of {total}'
+        }
+      },
+      tr: {
+        translation: {
+          Next: 'Sonraki',
+          Previous: 'Önceki',
+          'Page {page} of {total}': '{page}. sayfa / {total}'
+        }
+      },
+      de: {
+        translation: {
+          Next: 'Nächste',
+          Previous: 'Vorherige',
+          'Page {page} of {total}': 'Seite {page} von {total}'
+        }
+      },
+      fr: {
+        translation: {
+          Next: 'Suivant',
+          Previous: 'Précédent',
+          'Page {page} of {total}': 'Page {page} sur {total}'
+        }
+      },
+      es: {
+        translation: {
+          Next: 'Siguiente',
+          Previous: 'Anterior',
+          'Page {page} of {total}': 'Página {page} de {total}'
+        }
+      }
+    },
+    lng: lang,
+    fallbackLng: 'en',
+
+    interpolation: {
+      escapeValue: false
+    }
+  })
+  // translate initial
+  const { translate } = useTranslation()
+
+  // states
   const [_tiff] = React.useState(tiff)
   const [, setTiffs] = React.useState([])
   const [pages, setPages] = React.useState([])
@@ -61,7 +114,7 @@ export const TIFFViewer = ({ tiff, ...rest }) => {
 
   return (
     <div className={styles.container} id='tiff-container' {...rest}>
-      <div id='tiff-inner-container' />
+      <div id='tiff-inner-container' className={styles.inner} />
       {pages.length > 1 && (
         <div id='footer'>
           <button
@@ -69,20 +122,26 @@ export const TIFFViewer = ({ tiff, ...rest }) => {
             onClick={handlePreviousClick}
             className={styles.button}
           >
-            Previous
+            {translate('Previous')}
           </button>
           <span className={styles.span}>
             Page {page + 1} of {pages.length}
+            {translate(`Page ${page + 1} of ${pages.length}`)}
           </span>
           <button
             disabled={page === pages.length - 1}
             onClick={handleNextClick}
             className={styles.button}
           >
-            Next
+            {translate('Next')}
           </button>
         </div>
       )}
     </div>
   )
+}
+
+TIFFViewer.propTypes = {
+  tiff: PropTypes.string.isRequired,
+  lang: PropTypes.string
 }

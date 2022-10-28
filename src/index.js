@@ -54,7 +54,7 @@ export const TIFFViewer = ({ tiff, lang = 'en', ...rest }) => {
     }
   })
   // translate initial
-  const { translate } = useTranslation()
+  const { t } = useTranslation()
 
   // states
   const [_tiff] = React.useState(tiff)
@@ -122,18 +122,18 @@ export const TIFFViewer = ({ tiff, lang = 'en', ...rest }) => {
             onClick={handlePreviousClick}
             className={styles.button}
           >
-            {translate('Previous')}
+            {t('Previous')}
           </button>
           <span className={styles.span}>
             Page {page + 1} of {pages.length}
-            {translate(`Page ${page + 1} of ${pages.length}`)}
+            {t(`Page ${page + 1} of ${pages.length}`)}
           </span>
           <button
             disabled={page === pages.length - 1}
             onClick={handleNextClick}
             className={styles.button}
           >
-            {translate('Next')}
+            {t('Next')}
           </button>
         </div>
       )}

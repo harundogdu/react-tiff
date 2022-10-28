@@ -12,10 +12,36 @@
   box-sizing: border-box;
 }
 
-.inner {
+.arrow {
+  position: relative;
   max-width: 1024px;
   width: 100%;
   height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.arrow .inner {
+  position: relative;
+  max-width: 1024px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+canvas {
+  max-width: 1024px;
+  width: fit-content;
+  height: 100%;
+  max-height: 700px;
+  object-fit: contain;
+}
+
+canvas:hover {
+  cursor: pointer;
 }
 
 .button {
@@ -29,8 +55,8 @@
 }
 
 .button:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
+  background-color: #ccc !important;
+  cursor: not-allowed !important;
 }
 
 .span {
@@ -41,4 +67,34 @@
   width: 100px;
   display: inline-block;
   text-align: center;
+}
+
+.absolute button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background-color: #141414;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  z-index: 99;
+  padding: 5px 12px;
+}
+
+.absolute button:nth-child(1) {
+  left: 5%;
+}
+
+.absolute button:nth-child(2) {
+  right: 5%;
+}
+
+button {
+  transition: cubic-bezier(0.075, 0.82, 0.165, 1) all;
+}
+
+button:not(:disabled):hover {
+  background-color: #000;
+  opacity: .8 !important;
 }

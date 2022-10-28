@@ -118,7 +118,7 @@ export const TIFFViewer = forwardRef(function TiffFileViewer(
 
   const handlePrintClick = () => {
     try {
-      btnPrintRef.current.style.visibility = 'hidden'
+      if (printable) btnPrintRef.current.style.visibility = 'hidden'
 
       if (paginateLTRRef.current)
         paginateLTRRef.current.style.visibility = 'hidden'
@@ -151,7 +151,7 @@ export const TIFFViewer = forwardRef(function TiffFileViewer(
     } catch (error) {
       console.error('Error')
     } finally {
-      btnPrintRef.current.style.visibility = 'visible'
+      if (printable) btnPrintRef.current.style.visibility = 'visible'
 
       if (paginateLTRRef.current)
         paginateLTRRef.current.style.visibility = 'visible'
@@ -176,6 +176,19 @@ export const TIFFViewer = forwardRef(function TiffFileViewer(
   useEffect(() => {
     i18n.changeLanguage(lang)
   }, [lang])
+
+  // ref all page print
+  React.useImperativeHandle(ref, () => ({
+    context: () => {
+      pages.forEach((page, index) => {
+        if (index > 0) {
+          canvasRef.current.style.display = 'block'
+          canvasRef.current.appendChild(page)
+        }
+      })
+      return canvasRef.current
+    }
+  }))
 
   return (
     <div className={styles.container} id='tiff-container' ref={ref} {...rest}>

@@ -11,6 +11,7 @@ const App = () => {
   useEffect(() => {
     document.title = 'React TIFF Viewer'
   }, [])
+
   return (
     <>
       <TIFFViewer
@@ -18,7 +19,6 @@ const App = () => {
         lang='tr'
         paginate='ltr'
         buttonColor='#141414'
-        printable
       />
     </>
   )

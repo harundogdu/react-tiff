@@ -6,55 +6,61 @@ import i18n from 'i18next'
 import { useTranslation, initReactI18next } from 'react-i18next'
 import PropTypes from 'prop-types'
 
-export const TIFFViewer = ({ tiff, lang = 'en', ...rest }) => {
-  // i18 localization
-  i18n.use(initReactI18next).init({
-    resources: {
-      en: {
-        translation: {
-          Next: 'Next',
-          Previous: 'Previous',
-          'Page {page} of {total}': 'Page {page} of {total}'
-        }
-      },
-      tr: {
-        translation: {
-          Next: 'Sonraki',
-          Previous: 'Önceki',
-          'Page {page} of {total}': '{page}. sayfa / {total}'
-        }
-      },
-      de: {
-        translation: {
-          Next: 'Nächste',
-          Previous: 'Vorherige',
-          'Page {page} of {total}': 'Seite {page} von {total}'
-        }
-      },
-      fr: {
-        translation: {
-          Next: 'Suivant',
-          Previous: 'Précédent',
-          'Page {page} of {total}': 'Page {page} sur {total}'
-        }
-      },
-      es: {
-        translation: {
-          Next: 'Siguiente',
-          Previous: 'Anterior',
-          'Page {page} of {total}': 'Página {page} de {total}'
-        }
+i18n.use(initReactI18next).init({
+  resources: {
+    en: {
+      translation: {
+        Next: 'Next',
+        Previous: 'Previous',
+        'Page of total': 'Page {{page}} of {{total}}'
       }
     },
-    lng: lang,
-    fallbackLng: 'en',
-
-    interpolation: {
-      escapeValue: false
+    tr: {
+      translation: {
+        Next: 'Sonraki',
+        Previous: 'Önceki',
+        'Page of total': '{{ page }}. sayfa / {{ total }}'
+      }
+    },
+    de: {
+      translation: {
+        Next: 'Nächste',
+        Previous: 'Vorherige',
+        'Page of total': 'Seite {{page}} von {{total}}'
+      }
+    },
+    fr: {
+      translation: {
+        Next: 'Suivant',
+        Previous: 'Précédent',
+        'Page of total': 'Page {{page}} sur {{total}}'
+      }
+    },
+    es: {
+      translation: {
+        Next: 'Siguiente',
+        Previous: 'Anterior',
+        'Page of total': 'Página {{page}} de {{total}}'
+      }
     }
-  })
+  },
+  lng: 'tr',
+  fallbackLng: 'en',
+
+  interpolation: {
+    escapeValue: false
+  }
+})
+
+export const TIFFViewer = ({
+  tiff,
+  lang = 'en',
+  paginate = 'bottom',
+  buttonColor = '#141414',
+  ...rest
+}) => {
   // translate initial
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
 
   // states
   const [_tiff] = React.useState(tiff)
@@ -112,12 +118,41 @@ export const TIFFViewer = ({ tiff, lang = 'en', ...rest }) => {
     }
   }, [page, pages])
 
+  useEffect(() => {
+    i18n.changeLanguage(lang)
+  }, [lang])
+
   return (
     <div className={styles.container} id='tiff-container' {...rest}>
-      <div id='tiff-inner-container' className={styles.inner} />
-      {pages.length > 1 && (
+      <div className={styles.arrow}>
+        <div id='tiff-inner-container' className={styles.inner} />
+
+        {paginate === 'ltr' && pages.length > 1 && (
+          <div className={styles.absolute} id='absolute'>
+            <button
+              style={{ backgroundColor: buttonColor }}
+              disabled={page === 0}
+              onClick={handlePreviousClick}
+              className={styles.button}
+            >
+              {t('<')}
+            </button>{' '}
+            <button
+              style={{ backgroundColor: buttonColor }}
+              disabled={page === pages.length - 1}
+              onClick={handleNextClick}
+              className={styles.button}
+            >
+              {t('>')}
+            </button>
+          </div>
+        )}
+      </div>
+
+      {paginate === 'bottom' && pages.length > 1 && (
         <div id='footer'>
           <button
+            style={{ backgroundColor: buttonColor }}
             disabled={page === 0}
             onClick={handlePreviousClick}
             className={styles.button}
@@ -125,10 +160,10 @@ export const TIFFViewer = ({ tiff, lang = 'en', ...rest }) => {
             {t('Previous')}
           </button>
           <span className={styles.span}>
-            Page {page + 1} of {pages.length}
-            {t(`Page ${page + 1} of ${pages.length}`)}
+            {t('Page of total', { page: page + 1, total: pages.length })}
           </span>
           <button
+            style={{ backgroundColor: buttonColor }}
             disabled={page === pages.length - 1}
             onClick={handleNextClick}
             className={styles.button}
@@ -143,5 +178,7 @@ export const TIFFViewer = ({ tiff, lang = 'en', ...rest }) => {
 
 TIFFViewer.propTypes = {
   tiff: PropTypes.string.isRequired,
-  lang: PropTypes.string
+  lang: 'tr' | 'en' | 'de' | 'fr' | 'es',
+  paginate: 'ltr' | 'bottom',
+  buttonColor: PropTypes.string
 }

@@ -198,6 +198,7 @@ export const TIFFViewer = forwardRef(function TiffFileViewer(
           onClick={handlePrintClick}
           ref={btnPrintRef}
           className={styles.btnPrint}
+          type='button'
         >
           <svg
             xmlns='http://www.w3.org/2000/svg'
@@ -229,6 +230,7 @@ export const TIFFViewer = forwardRef(function TiffFileViewer(
               disabled={page === 0}
               onClick={handlePreviousClick}
               className={styles.button}
+              type='button'
             >
               {t('<')}
             </button>{' '}
@@ -237,6 +239,7 @@ export const TIFFViewer = forwardRef(function TiffFileViewer(
               disabled={page === pages.length - 1}
               onClick={handleNextClick}
               className={styles.button}
+              type='button'
             >
               {t('>')}
             </button>
@@ -251,6 +254,7 @@ export const TIFFViewer = forwardRef(function TiffFileViewer(
             disabled={page === 0}
             onClick={handlePreviousClick}
             className={styles.button}
+            type='button'
           >
             {t('Previous')}
           </button>
@@ -262,6 +266,7 @@ export const TIFFViewer = forwardRef(function TiffFileViewer(
             disabled={page === pages.length - 1}
             onClick={handleNextClick}
             className={styles.button}
+            type='button'
           >
             {t('Next')}
           </button>

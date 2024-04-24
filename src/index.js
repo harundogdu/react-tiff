@@ -42,6 +42,13 @@ i18n.use(initReactI18next).init({
         Previous: 'Anterior',
         'Page of total': 'Página {{page}} de {{total}}'
       }
+    },
+    ja: {
+      translation: {
+        Next: '次へ',
+        Previous: '前へ',
+        'Page of total': '{{page}} / {{total}} ページ'
+      }
     }
   },
   lng: 'tr',

@@ -37,7 +37,7 @@ const App = () => {
   return (
     <TIFFViewer
       tiff={tiffFile}
-      lang='en' // en | de | fr | es | tr
+      lang='en' // en | de | fr | es | tr | ja
       paginate='ltr' // bottom | ltr
       buttonColor='#141414'
       printable

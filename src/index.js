@@ -49,6 +49,34 @@ i18n.use(initReactI18next).init({
         Previous: '前へ',
         'Page of total': '{{page}} / {{total}} ページ'
       }
+    },
+    zh: {
+      translation: {
+        Next: '下一页',
+        Previous: '上一页',
+        'Page of total': '第 {{page}} 页，共 {{total}} 页'
+      }
+    },
+    ru: {
+      translation: {
+        Next: 'Следующий',
+        Previous: 'Предыдущий',
+        'Page of total': 'Страница {{page}} из {{total}}'
+      }
+    },
+    ar: {
+      translation: {
+        Next: 'التالى',
+        Previous: 'سابق',
+        'Page of total': 'صفحة {{page}} من {{total}}'
+      }
+    },
+    hi: {
+      translation: {
+        Next: 'अगला',
+        Previous: 'पिछला',
+        'Page of total': 'पृष्ठ {{page}} का {{total}}'
+      }
     }
   },
   lng: 'tr',

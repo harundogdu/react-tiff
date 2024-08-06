@@ -1,6 +1,6 @@
 {
   "name": "react-tiff",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "keywords": [
     "tiff",
     "react-tiff",
@@ -11,12 +11,15 @@
   "description": "A React component for viewing TIFF images.",
   "author": "harundogdu",
   "license": "MIT",
-  "repository": "harundogdu/react-tiff",
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.js",
   "engines": {
     "node": ">=10"
+  },
+  "repository": "https://github.com/Anatomy-Financial/react-tiff",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
   },
   "scripts": {
     "build": "microbundle-crl --no-compress --format modern,cjs",

@@ -24,6 +24,22 @@ npm install --save react-tiff
 yarn add react-tiff
 ```
 
+## Typescript usage
+
+Add a type declaration for the module to prevent an error when importing the `TIFFViewer` module.
+
+```
+declare module '@anatomy-financial/react-tiff' {
+  export const TIFFViewer: React.FC<{
+    tiff: any;
+    lang?: 'en' | 'de' | 'fr' | 'es' | 'tr' | 'ja' | 'zh' | 'ru' | 'ar' | 'hi';
+    paginate?: 'ltr'|'bottom';
+    printable?: boolean;
+    buttonColor?: string;
+  }>;
+}
+```
+
 ## Usage
 
 ```jsx
@@ -36,17 +52,31 @@ import tiffFile from './images/multipage.tiff'
 const App = () => {
   return (
     <TIFFViewer
-      tiff={tiffFile}
+      tiff={tiffFile} // URL or path to a tiff image
       lang='en' // en | de | fr | es | tr | ja | zh | ru | ar | hi
-      paginate='ltr' // bottom | ltr
-      buttonColor='#141414'
-      printable
+      paginate='ltr' // bottom | ltr, remove for no buttons
+      buttonColor='#141414' //color of pagination buttons
+      printable // icon 
     />
   )
 }
 
 export default App
 ```
+
+## Publishing
+
+Increment the package.json version number.
+
+Generate an npm auth token and add `.npmrc` file in project root with:
+
+```
+@YOUR_USER_NAME:registry=https://npm.pkg.github.com/YOUR_USER_NAME
+//npm.pkg.github.com/:_authToken=NPM_AUTH_TOKEN
+```
+
+`$ npm run build`
+`$ npm publish`
 
 ## Live
 

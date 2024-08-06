@@ -41,10 +41,6 @@ canvas {
   object-fit: contain;
 }
 
-canvas:hover {
-  cursor: pointer;
-}
-
 .button {
   padding: 0.4rem 2rem;
   border: none;

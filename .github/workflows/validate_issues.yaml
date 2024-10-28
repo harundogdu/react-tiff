@@ -1,0 +1,17 @@
+name: 'Validate PR Issues'
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  validate-issues:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: anatomy-financial/check-commit-issues-action@main
+        with:
+          jira-user: ${{ secrets.JIRA_USER }}
+          jira-host: ${{ secrets.JIRA_HOST }}
+          jira-token: ${{ secrets.JIRA_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}

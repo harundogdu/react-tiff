@@ -19,6 +19,8 @@ const App = () => {
         lang='tr'
         paginate='ltr'
         buttonColor='#141414'
+        printable
+        zoomable
       />
     </>
   )

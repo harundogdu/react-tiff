@@ -1,6 +1,6 @@
 /* add css module styles here (optional) */
 
-.container {
+.tiffContainer {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,7 +13,7 @@
   position: relative;
 }
 
-.arrow {
+.tiffContainer .tiffArrow {
   position: relative;
   max-width: 1024px;
   width: 100%;
@@ -23,7 +23,7 @@
   justify-content: center;
 }
 
-.arrow .inner {
+.tiffContainer .tiffArrow .tiffInner {
   position: relative;
   max-width: 1024px;
   width: 100%;
@@ -33,7 +33,7 @@
   justify-content: center;
 }
 
-canvas {
+.tiffContainer canvas {
   max-width: 1024px;
   width: fit-content;
   height: 100%;
@@ -41,11 +41,11 @@ canvas {
   object-fit: contain;
 }
 
-canvas:hover {
+.tiffContainer canvas:hover {
   cursor: pointer;
 }
 
-.button {
+.tiffContainer .tiffButton {
   padding: 0.4rem 2rem;
   border: none;
   border-radius: 0.25rem;
@@ -55,12 +55,12 @@ canvas:hover {
   cursor: pointer;
 }
 
-.button:disabled {
+.tiffContainer .tiffButton:disabled {
   background-color: #ccc !important;
   cursor: not-allowed !important;
 }
 
-.span {
+.tiffContainer .tiffSpan {
   margin: 0 16px;
   font-size: 1rem;
   font-weight: 500;
@@ -70,7 +70,7 @@ canvas:hover {
   text-align: center;
 }
 
-.absolute button {
+.tiffContainer .tiffAbsolute button {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -83,24 +83,24 @@ canvas:hover {
   padding: 5px 12px;
 }
 
-.absolute button:nth-child(1) {
+.tiffContainer .tiffAbsolute button:nth-child(1) {
   left: 5%;
 }
 
-.absolute button:nth-child(2) {
+.tiffContainer .tiffAbsolute button:nth-child(2) {
   right: 5%;
 }
 
-button {
+.tiffContainer button {
   transition: cubic-bezier(0.075, 0.82, 0.165, 1) all;
 }
 
-button:not(:disabled):hover {
+.tiffContainer button:not(:disabled):hover {
   background-color: #000;
-  opacity: .8 !important;
+  opacity: 0.8 !important;
 }
 
-.btnPrint {
+.tiffContainer .tiffBtnPrint {
   position: absolute;
   top: 5%;
   right: 5%;
@@ -113,11 +113,11 @@ button:not(:disabled):hover {
   transition: all cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
-.btnPrint:hover {
+.tiffContainer .tiffBtnPrint:hover {
   color: #fff;
 }
 
-.btnPrint svg {
+.tiffContainer .tiffBtnPrint svg {
   width: 20px;
   height: 20px;
 }

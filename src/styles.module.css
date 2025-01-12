@@ -13,6 +13,9 @@
   position: relative;
 }
 
+.tiffContainer .tiffHeader {
+}
+
 .tiffContainer .tiffArrow {
   position: relative;
   max-width: 1024px;
@@ -100,24 +103,27 @@
   opacity: 0.8 !important;
 }
 
-.tiffContainer .tiffBtnPrint {
-  position: absolute;
-  top: 5%;
-  right: 5%;
-  z-index: 99;
+.tiffContainer .tiffButtons {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.tiffContainer .tiffBtnPrint,
+.tiffContainer .tiffBtnZoom {
   border: none;
   color: #141414;
-  font-size: 1rem;
   cursor: pointer;
-  padding: 5px 12px;
+  padding: 4px 12px;
   transition: all cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
-.tiffContainer .tiffBtnPrint:hover {
+.tiffContainer .tiffBtnPrint:hover,
+.tiffContainer .tiffBtnZoom:hover {
   color: #fff;
 }
 
-.tiffContainer .tiffBtnPrint svg {
-  width: 20px;
-  height: 20px;
+.tiffContainer .tiffButtons svg {
+  width: 14px;
+  height: 14px;
 }

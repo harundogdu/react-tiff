@@ -226,13 +226,18 @@ export const TIFFViewer = forwardRef(function TiffFileViewer(
   }))
 
   return (
-    <div className={styles.container} id='tiff-container' ref={ref} {...rest}>
+    <div
+      className={styles.tiffContainer}
+      id='tiff-container'
+      ref={ref}
+      {...rest}
+    >
       {printable && (
         <button
           id='btn-print'
           onClick={handlePrintClick}
           ref={btnPrintRef}
-          className={styles.btnPrint}
+          className={styles.tiffBtnPrint}
           type='button'
         >
           <svg
@@ -251,20 +256,24 @@ export const TIFFViewer = forwardRef(function TiffFileViewer(
           </svg>
         </button>
       )}
-      <div className={styles.arrow}>
+      <div className={styles.tiffArrow}>
         <div
           id='tiff-inner-container'
-          className={styles.inner}
+          className={styles.tiffInner}
           ref={canvasRef}
         />
 
         {paginate === 'ltr' && pages.length > 1 && (
-          <div className={styles.absolute} id='absolute' ref={paginateLTRRef}>
+          <div
+            className={styles.tiffAbsolute}
+            id='absolute'
+            ref={paginateLTRRef}
+          >
             <button
               style={{ backgroundColor: buttonColor }}
               disabled={page === 0}
               onClick={handlePreviousClick}
-              className={styles.button}
+              className={styles.tiffButton}
               type='button'
             >
               {t('<')}
@@ -273,7 +282,7 @@ export const TIFFViewer = forwardRef(function TiffFileViewer(
               style={{ backgroundColor: buttonColor }}
               disabled={page === pages.length - 1}
               onClick={handleNextClick}
-              className={styles.button}
+              className={styles.tiffAbsolute}
               type='button'
             >
               {t('>')}
@@ -288,19 +297,19 @@ export const TIFFViewer = forwardRef(function TiffFileViewer(
             style={{ backgroundColor: buttonColor }}
             disabled={page === 0}
             onClick={handlePreviousClick}
-            className={styles.button}
+            className={styles.tiffAbsolute}
             type='button'
           >
             {t('Previous')}
           </button>
-          <span className={styles.span}>
+          <span className={styles.tiffSpan}>
             {t('Page of total', { page: page + 1, total: pages.length })}
           </span>
           <button
             style={{ backgroundColor: buttonColor }}
             disabled={page === pages.length - 1}
             onClick={handleNextClick}
-            className={styles.button}
+            className={styles.tiffAbsolute}
             type='button'
           >
             {t('Next')}

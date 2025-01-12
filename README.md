@@ -13,6 +13,7 @@ A React component for viewing TIFF images.
 - Supports TIFF images with multiple bits per sample (e.g. 1, 2, 4, 8, 16, 32)
 - Supports TIFF images with multiple photometric interpretations (e.g. min-is-black, min-is-white, RGB, palette color, transparency mask, CMYK, YCbCr, CIELab)
 - Support you can print out tiff images.
+- Support you can zoom in and out tiff images.
 
 ## Install
 
@@ -41,6 +42,7 @@ const App = () => {
       paginate='ltr' // bottom | ltr
       buttonColor='#141414'
       printable
+      zoomable
     />
   )
 }

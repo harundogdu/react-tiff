@@ -40,9 +40,9 @@ const App = () => {
       tiff={tiffFile}
       lang='en' // en | de | fr | es | tr | ja | zh | ru | ar | hi
       paginate='ltr' // bottom | ltr
-      buttonColor='#141414'
-      printable
-      zoomable
+      buttonColor='#141414' // pagination button color
+      printable // print button visible
+      zoomable // zoom in and out button visible
     />
   )
 }

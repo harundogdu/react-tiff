@@ -92,7 +92,9 @@ export const TIFFViewer = forwardRef(function TiffFileViewer(
     tiff,
     lang = 'en',
     paginate = 'bottom',
+    currentPage = 0,
     buttonColor = '#141414',
+    onDocumentLoad = () => {},
     printable = false,
     zoomable = false,
     ...rest
@@ -133,6 +135,7 @@ export const TIFFViewer = forwardRef(function TiffFileViewer(
     })
     setPages(_tiffs)
     setTiffs(_tiffs)
+    onDocumentLoad(pages)
   }
 
   async function displayTIFF(tiffUrl) {
@@ -141,6 +144,12 @@ export const TIFFViewer = forwardRef(function TiffFileViewer(
     })
     imgLoaded({ target: { response: response.data } })
   }
+
+  React.useEffect(() => {
+    if (currentPage >= 0 && currentPage < pages.length) {
+    setPage(currentPage)
+    }
+  }, [currentPage])
 
   const handlePreviousClick = () => {
     if (page > 0) {
@@ -395,6 +404,8 @@ TIFFViewer.propTypes = {
   lang: PropTypes.string,
   paginate: PropTypes.string,
   buttonColor: PropTypes.string,
+  onDocumentLoad: PropTypes.func,
+  currentPage: PropTypes.number,
   printable: PropTypes.bool,
   zoomable: PropTypes.bool
 }

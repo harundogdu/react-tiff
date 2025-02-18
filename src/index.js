@@ -147,7 +147,7 @@ export const TIFFViewer = forwardRef(function TiffFileViewer(
 
   React.useEffect(() => {
     if (currentPage >= 0 && currentPage < pages.length) {
-    setPage(currentPage)
+      setPage(currentPage)
     }
   }, [currentPage])
 

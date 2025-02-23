@@ -14,6 +14,7 @@ A React component for viewing TIFF images.
 - Supports TIFF images with multiple photometric interpretations (e.g. min-is-black, min-is-white, RGB, palette color, transparency mask, CMYK, YCbCr, CIELab)
 - Support you can print out tiff images.
 - Support you can zoom in and out tiff images.
+- Support you can get the total number of pages on load of the document and handle pagination programmatically.
 
 ## Install
 

@@ -92,7 +92,7 @@ export const TIFFViewer = forwardRef(function TiffFileViewer(
     tiff,
     lang = 'en',
     paginate = 'bottom',
-    currentPage = 0,
+    currentPage = 1,
     buttonColor = '#141414',
     onDocumentLoad = () => {},
     printable = false,
@@ -135,7 +135,7 @@ export const TIFFViewer = forwardRef(function TiffFileViewer(
     })
     setPages(_tiffs)
     setTiffs(_tiffs)
-    onDocumentLoad(pages)
+    onDocumentLoad(_tiffs.length)
   }
 
   async function displayTIFF(tiffUrl) {
@@ -146,8 +146,8 @@ export const TIFFViewer = forwardRef(function TiffFileViewer(
   }
 
   React.useEffect(() => {
-    if (currentPage >= 0 && currentPage < pages.length) {
-      setPage(currentPage)
+    if (currentPage - 1 >= 0 && currentPage - 1 < pages.length) {
+      setPage(currentPage - 1)
     }
   }, [currentPage])
 

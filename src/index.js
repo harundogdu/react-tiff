@@ -138,12 +138,18 @@ export const TIFFViewer = forwardRef(function TiffFileViewer(
     onDocumentLoad(pages)
   }
 
-  async function displayTIFF(tiffUrl) {
+async function displayTIFF(tiffUrl) {
+  try {
     const response = await axios.get(tiffUrl, {
       responseType: 'arraybuffer'
     })
     imgLoaded({ target: { response: response.data } })
+  } finally {
+    if (typeof rest.onLoad === 'function') {
+      rest.onLoad()
+    }
   }
+}
 
   React.useEffect(() => {
     if (currentPage >= 0 && currentPage < pages.length) {
@@ -407,5 +413,6 @@ TIFFViewer.propTypes = {
   onDocumentLoad: PropTypes.func,
   currentPage: PropTypes.number,
   printable: PropTypes.bool,
-  zoomable: PropTypes.bool
+  zoomable: PropTypes.bool,
+  onLoad: PropTypes.func
 }

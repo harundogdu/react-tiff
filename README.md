@@ -15,6 +15,8 @@ A React component for viewing TIFF images.
 - Support you can print out tiff images.
 - Support you can zoom in and out tiff images.
 - Support you can get the total number of pages on load of the document and handle pagination programmatically.
+- Support onLoad callback when TIFF file has been loaded.
+- Support currentPage prop to display specific page programmatically.
 
 ## Install
 
@@ -36,12 +38,23 @@ import 'react-tiff/dist/index.css'
 import tiffFile from './images/multipage.tiff'
 
 const App = () => {
+  const handleDocumentLoad = (totalPages) => {
+    console.log(`Document loaded with ${totalPages} pages`)
+  }
+
+  const handleLoad = () => {
+    console.log('TIFF file has been loaded')
+  }
+
   return (
     <TIFFViewer
       tiff={tiffFile}
       lang='en' // en | de | fr | es | tr | ja | zh | ru | ar | hi
       paginate='ltr' // bottom | ltr
       buttonColor='#141414' // pagination button color
+      currentPage={1} // current page to display
+      onDocumentLoad={handleDocumentLoad} // callback when document loads
+      onLoad={handleLoad} // callback when TIFF file loads
       printable // print button visible
       zoomable // zoom in and out button visible
     />

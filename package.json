@@ -15,6 +15,7 @@
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.js",
+  "types": "index.d.ts",
   "engines": {
     "node": ">=10"
   },
@@ -55,7 +56,8 @@
     "react-scripts": "^3.4.1"
   },
   "files": [
-    "dist"
+    "dist",
+    "index.d.ts"
   ],
   "dependencies": {
     "axios": "^1.1.3",

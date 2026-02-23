@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 
-import { TIFFViewer } from 'react-tiff-viewer'
-import 'react-tiff-viewer/dist/index.css'
+import { TIFFViewer } from 'react-tiff'
+import 'react-tiff/dist/index.css'
 import tiffFile from './images/multipage.tiff'
 import tiffFile2 from './images/sample.tiff'
 import tiffFile3 from './images/test.tiff'
@@ -12,6 +12,14 @@ const App = () => {
     document.title = 'React TIFF Viewer'
   }, [])
 
+  const handleDocumentLoad = (totalPages) => {
+    console.log(`Document loaded with ${totalPages} pages`)
+  }
+
+  const handleLoad = () => {
+    console.log('TIFF file has been loaded')
+  }
+
   return (
     <>
       <TIFFViewer
@@ -19,6 +27,9 @@ const App = () => {
         lang='tr'
         paginate='ltr'
         buttonColor='#141414'
+        currentPage={1}
+        onDocumentLoad={handleDocumentLoad}
+        onLoad={handleLoad}
         printable
         zoomable
       />

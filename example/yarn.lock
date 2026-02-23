@@ -8789,7 +8789,7 @@ react-is@^16.13.1, react-is@^16.8.4:
   version "0.0.0"
   uid ""
 
-"react-tiff-viewer@link:..":
+"react-tiff@link:..":
   version "0.0.0"
   uid ""
 

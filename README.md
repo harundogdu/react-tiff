@@ -17,6 +17,7 @@ A React component for viewing TIFF images.
 - Support you can get the total number of pages on load of the document and handle pagination programmatically.
 - Support onLoad callback when TIFF file has been loaded.
 - Support currentPage prop to display specific page programmatically.
+- Full TypeScript support with complete type definitions.
 
 ## Install
 
@@ -64,6 +65,41 @@ const App = () => {
 export default App
 ```
 
+## TypeScript Usage
+
+```tsx
+import React from 'react'
+import { TIFFViewer } from 'react-tiff'
+import 'react-tiff/dist/index.css'
+import tiffFile from './images/multipage.tiff'
+
+const App: React.FC = () => {
+  const handleDocumentLoad = (totalPages: number) => {
+    console.log(`Document loaded with ${totalPages} pages`)
+  }
+
+  const handleLoad = () => {
+    console.log('TIFF file has been loaded')
+  }
+
+  return (
+    <TIFFViewer
+      tiff={tiffFile}
+      lang='en'
+      paginate='ltr'
+      buttonColor='#141414'
+      currentPage={1}
+      onDocumentLoad={handleDocumentLoad}
+      onLoad={handleLoad}
+      printable
+      zoomable
+    />
+  )
+}
+
+export default App
+```
+
 ## Live
 
 [Demo](https://codesandbox.io/s/react-tiff-95u65f)
@@ -72,7 +108,7 @@ export default App
 
 > Made with create-react-library
 
-[![NPM](https://img.shields.io/npm/v/react-tiff-viewer.svg)](https://www.npmjs.com/package/react-tiff-viewer) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NPM](https://img.shields.io/npm/v/react-tiff.svg)](https://www.npmjs.com/package/react-tiff) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com) [![TypeScript](https://img.shields.io/badge/TypeScript-supported-blue.svg)](https://www.typescriptlang.org/)
 
 ## License
 

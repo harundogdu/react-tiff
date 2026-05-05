@@ -118,6 +118,7 @@ export const TIFFViewer = forwardRef(function TiffFileViewer(
   const paginateBottomRef = React.useRef(null)
 
   function imgLoaded(e) {
+    if (!canvasRef.current) return
     var ifds = UTIF.decode(e.target.response)
     const _tiffs = ifds.map(function (ifd, index) {
       UTIF.decodeImage(e.target.response, ifd)
@@ -129,27 +130,14 @@ export const TIFFViewer = forwardRef(function TiffFileViewer(
       var img = ctx.createImageData(ifd.width, ifd.height)
       img.data.set(rgba)
       ctx.putImageData(img, 0, 0)
-      if (index === 0)
-        document.getElementById('tiff-inner-container').appendChild(canvas)
+      if (index === 0 && canvasRef.current)
+        canvasRef.current.appendChild(canvas)
       return canvas
     })
     setPages(_tiffs)
     setTiffs(_tiffs)
     onDocumentLoad(_tiffs.length)
   }
-
-async function displayTIFF(tiffUrl) {
-  try {
-    const response = await axios.get(tiffUrl, {
-      responseType: 'arraybuffer'
-    })
-    imgLoaded({ target: { response: response.data } })
-  } finally {
-    if (typeof rest.onLoad === 'function') {
-      rest.onLoad()
-    }
-  }
-}
 
   React.useEffect(() => {
     if (currentPage - 1 >= 0 && currentPage - 1 < pages.length) {
@@ -240,7 +228,36 @@ async function displayTIFF(tiffUrl) {
   }
 
   useEffect(() => {
+    const controller =
+      typeof window !== 'undefined' && window.AbortController
+        ? new window.AbortController()
+        : null
+    let isMounted = true
+
+    async function displayTIFF(tiffUrl) {
+      try {
+        const response = await axios.get(tiffUrl, {
+          responseType: 'arraybuffer',
+          signal: controller ? controller.signal : undefined
+        })
+        if (!isMounted) return
+        imgLoaded({ target: { response: response.data } })
+      } catch (error) {
+        if (axios.isCancel?.(error) || error.name === 'CanceledError') return
+        throw error
+      } finally {
+        if (isMounted && typeof rest.onLoad === 'function') {
+          rest.onLoad()
+        }
+      }
+    }
+
     displayTIFF(_tiff)
+
+    return () => {
+      isMounted = false
+      if (controller) controller.abort()
+    }
   }, [_tiff])
 
   useEffect(() => {
